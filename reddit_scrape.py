@@ -38,7 +38,7 @@ def clean_comment(result):
     result_dict['name'] = result.name
     result_dict['num_comments'] = None
     result_dict['score'] = int(result.score)
-    result_dict['selftext'] = ' '.join(
+    result_dict['body'] = ' '.join(
         bs(result.body).text.split()
     )
     result_dict['title'] = None
@@ -99,7 +99,7 @@ def clean_submission(result):
     result_dict['name'] = result.name
     result_dict['num_comments'] = int(result.num_comments)
     result_dict['score'] = int(result.score)
-    result_dict['selftext'] = ' '.join(
+    result_dict['body'] = ' '.join(
         bs(result.selftext).text.split()
     )
     result_dict['title'] = result.title
@@ -172,7 +172,7 @@ def write_results(results, terms, output_file):
 
     results = filter(
         lambda x: any(
-            map(lambda y: y in x['selftext'].lower(),
+            map(lambda y: y in x['body'].lower(),
                 list_terms)
         ),
         results)
